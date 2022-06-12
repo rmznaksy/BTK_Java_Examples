@@ -10,6 +10,7 @@ public class Main {
         int total = 0;
 
         try {
+            // txt dosyasının tam olan adresini vermemiz gerekiyor yoksa dosyayı bulamaz
             reader = new BufferedReader(new FileReader("C:\\Project\\BTK_Java\\ReadingFile\\src\\sayilar.txt"));
             String line = null;
             while ((line = reader.readLine()) != null) {
