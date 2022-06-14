@@ -18,3 +18,4 @@ public class CustomerDal implements IEntityRepository<Customer>{
 
 // generic constrains
 // generic kısıt
+
