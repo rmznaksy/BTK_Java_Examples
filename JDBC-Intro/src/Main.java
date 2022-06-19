@@ -16,7 +16,6 @@ public class Main {
                     ("insert into city (Name,CountryCode,District,Population) value('Ankara','TUR','Ankara',50000)");
             System.out.println("Kayıt Eklendi...");
 
-
         } catch (SQLException exception) {
             helper.showErrorMessage(exception);
         } finally {
