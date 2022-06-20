@@ -11,15 +11,10 @@ public class Main {
         ResultSet resultSet;
         try {
             connection = helper.getConnection();
-            String sql= "insert into city (Name,CountryCode,District,Population) value(?,?,?,?)";
+            String sql= "update city set population=8000 where id=100";
             statement = connection.prepareStatement(sql);
-            statement.setString(1,"Ankara");
-            statement.setString(2,"TUR");
-            statement.setString(3,"Turkey");
-            statement.setInt(4,150000);
-
             statement.executeUpdate(); // kaç kayıt etkilendi onu gösterir
-            System.out.println("Kayıt Eklendi...");
+            System.out.println("Kayıt Güncellendi...");
 
         } catch (SQLException exception) {
             helper.showErrorMessage(exception);
@@ -56,4 +51,32 @@ public class Main {
             connection.close();
         }
     }
+
+    public static void insertData() throws SQLException {
+        Connection connection = null;
+        DbHelper helper = new DbHelper();
+        PreparedStatement statement = null;
+        ResultSet resultSet;
+        try {
+            connection = helper.getConnection();
+            String sql= "insert into city (Name,CountryCode,District,Population) value(?,?,?,?)";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1,"Ankara");
+            statement.setString(2,"TUR");
+            statement.setString(3,"Turkey");
+            statement.setInt(4,150000);
+
+            statement.executeUpdate(); // kaç kayıt etkilendi onu gösterir
+            System.out.println("Kayıt Eklendi...");
+
+        } catch (SQLException exception) {
+            helper.showErrorMessage(exception);
+        } finally {
+            statement.close();
+            connection.close();
+        }
+
+    }
+
+
 }
