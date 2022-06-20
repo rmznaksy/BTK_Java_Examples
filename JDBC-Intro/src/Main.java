@@ -11,10 +11,11 @@ public class Main {
         ResultSet resultSet;
         try {
             connection = helper.getConnection();
-            String sql= "update city set population=8000 where id=100";
+            String sql = "delete from city where id=?";
             statement = connection.prepareStatement(sql);
+            statement.setInt(1,100); // id=100 silindi
             statement.executeUpdate(); // kaç kayıt etkilendi onu gösterir
-            System.out.println("Kayıt Güncellendi...");
+            System.out.println("Kayıt Silindi...");
 
         } catch (SQLException exception) {
             helper.showErrorMessage(exception);
@@ -59,12 +60,12 @@ public class Main {
         ResultSet resultSet;
         try {
             connection = helper.getConnection();
-            String sql= "insert into city (Name,CountryCode,District,Population) value(?,?,?,?)";
+            String sql = "insert into city (Name,CountryCode,District,Population) value(?,?,?,?)";
             statement = connection.prepareStatement(sql);
-            statement.setString(1,"Ankara");
-            statement.setString(2,"TUR");
-            statement.setString(3,"Turkey");
-            statement.setInt(4,150000);
+            statement.setString(1, "Ankara");
+            statement.setString(2, "TUR");
+            statement.setString(3, "Turkey");
+            statement.setInt(4, 150000);
 
             statement.executeUpdate(); // kaç kayıt etkilendi onu gösterir
             System.out.println("Kayıt Eklendi...");
@@ -76,6 +77,26 @@ public class Main {
             connection.close();
         }
 
+    }
+
+    public void updateData() throws SQLException {
+        Connection connection = null;
+        DbHelper helper = new DbHelper();
+        PreparedStatement statement = null;
+        ResultSet resultSet;
+        try {
+            connection = helper.getConnection();
+            String sql = "update city set population=8000 where id=100";
+            statement = connection.prepareStatement(sql);
+            statement.executeUpdate(); // kaç kayıt etkilendi onu gösterir
+            System.out.println("Kayıt Güncellendi...");
+
+        } catch (SQLException exception) {
+            helper.showErrorMessage(exception);
+        } finally {
+            statement.close();
+            connection.close();
+        }
     }
 
 
